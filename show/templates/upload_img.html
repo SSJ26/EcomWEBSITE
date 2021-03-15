@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <h1 style="text-align: center; margin-top: 15%;">Add New Products</h1>
+
+        {% load crispy_forms_tags %}
+        
+        {% block content %}
+        <form method="POST" action="" enctype="multipart/form-data" style="width: 50%; margin: auto;">
+
+            {% if error %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{error}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endif %}
+            
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div style="text-align: center;">
+
+                <button type="submit"  class="btn btn-primary">Add Product</button>
+            </div>
+        </form>
+        {% endblock %}
+    </div>
+    
+{% endblock %}

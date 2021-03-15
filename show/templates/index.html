@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% load static %}
+    <!-- <a href="upload_img" class="btn btn-primary m-2" style="float: right;">Add new product</a> -->
+    <!-- <a href="/logout_user" class="btn btn-primary m-2" style="float:right;">Logout</a> -->
+    <div class="container my-3">
+        <h1 id="prodHead" style="text-align: center;">Products</h1>
+        <div class="container">
+          
+          
+          {% for j in imagelist %}
+          <div class="mt-4">
+
+            <h3>{{j.0.category}}</h3>
+          </div>
+          <div class="row row-cols-4">
+          {%for i in j%}
+          
+          <div class="card col text-center" style="width: 18rem;">
+            <img src="/media/{{i.img}}" style="min-height:max-content;" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5  class="card-title desc">Name: {{i.name}}</h5>
+              <p  class="card-text desc">Desc: {{i.desc}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Category: {{i.category}}</li>
+              <li class="list-group-item">Created by: {{i.created_by}}</li>
+              <li class="list-group-item">Price: {{i.amount}}</li>
+            </ul>
+            <div class="card-body" style="padding:0; padding-top: 5px;padding-bottom: 5px;" >
+              <a href="/likes{{i.id}}" class="card-link"  ><i class="fas fa-thumbs-up" ></i> {{i.likes}}</a>
+              <!-- <a href="/delete_product{{i.id}}" class="card-link"><i class="fas fa-trash"></i></a> -->
+              <a href="/cart_product{{i.id}}" class="card-link"  ><i class="fas fa-shopping-cart"></i>Add to Cart</a>
+              <a href="/buy_product{{i.id}}/buy/" class="card-link"  ><i class="far fa-credit-card"></i>Buy </a>
+              {% if edit %}
+                    <a href="/myproducts/edit{{i.id}}" class="card-link">Edit Product</a>
+              {% endif %}
+            </div>
+          </div>
+            {%endfor%}
+          </div>
+                {%endfor%}
+        </div>
+    </div>
+{% endblock %}

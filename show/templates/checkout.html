@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<!-- {% for i in imagelist %}
+
+<div class="card col text-center" style="width: 18rem;">
+    <img src="/media/{{i.img}}" style="min-height:max-content;" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title desc">Name: {{i.name}}</h5>
+        <p class="card-text desc">Desc: {{i.desc}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Category: {{i.category}}</li>
+        <li class="list-group-item">Created by: {{i.created_by}}</li>
+        <li class="list-group-item">Price: {{i.amount}}</li>
+    </ul>
+    <div class="card-body" style="padding:0; padding-top: 5px;padding-bottom: 5px;">
+        <a href="/buy_product{{i.id}}" class="card-link"><i class="far fa-credit-card"></i>Buy </a>
+
+    </div>
+</div>
+{% endfor %} -->
+
+
+
+<div class="container text-center">
+    <h1>Buy This Product Now</h1>
+    <div class="row my-5">
+
+        <div class="card col text-center" style="width: 18rem;">
+            <img src="/media/{{item.img}}" style="min-height:max-content;" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title desc">Name: {{item.name}}</h5>
+                <!-- <p class="card-text desc">Desc: {{item.desc}}</p> -->
+            </div>
+            <ul class="list-group list-group-flush">
+                <!-- <li class="list-group-item">Category: {{item.category}}</li> -->
+                <!-- <li class="list-group-item">Created by: {{item.created_by}}</li> -->
+                <li class="list-group-item">Price: {{item.amount}}</li>
+            </ul>
+            <div class="card-body" style="padding:0; padding-top: 5px;padding-bottom: 5px;">
+                <!-- <a href="/delete_product{{i.id}}" class="card-link"><i class="fas fa-trash"></i>Delete</a> -->
+                <!-- <a href="/buy_product{{i.id}}" class="card-link"><i class="far fa-credit-card"></i>Buy </a> -->
+
+            </div>
+        </div>
+
+        <!-- adress and payement -->
+        <div class="col" style="text-align: left;">
+            <form action="">
+                <h4 style="text-align: center;">ADDRESS</h4>
+                <br>
+                Address Line 1:-
+                <input class="form-control" type="text" placeholder="Address Line 1">
+                <br>
+                
+                Address Line 2:-
+                <input class="form-control" type="text" placeholder="Address Line 2">
+                <br>
+                
+                City:-
+                <input class="form-control" type="text" placeholder="City">
+                <br>
+                
+                PinCode:-
+                <input class="form-control" type="text" placeholder="PinCode">
+                <br>
+                <br>
+
+                <h4 style="text-align: center;">Payment Options</h4>
+                <br>
+                <div style="text-align: left;">
+                    <input type="radio" id="debit" name="payment" value="debit">
+                    <label for="debit">Via Debit Card</label><br>
+                    <input type="radio" id="credit" name="payment" value="credit">
+                    <label for="credit">Via Credit Card</label><br>
+                    <input type="radio" id="net" name="payment" value="net">
+                    <label for="net">Via Net Banking</label><br>
+                    <input type="radio" id="cash" name="payment" value="cash">
+                    <label for="cash">Via Cash</label>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    {% if cart == "cart" %}
+    <a href="/remove_from_cart{{item.id}}" class="btn btn-primary my-5">Pay Now</a>
+    {% else %}
+    <a href="/place_order{{item.id}}" class="btn btn-primary my-5">Pay Now</a>
+    {% endif %}
+
+</div>
+{%endblock%}

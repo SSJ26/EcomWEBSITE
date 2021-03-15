@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+   {% block body%}
+    <div class="container my-3">
+        <h1 class="text-center">Contact Us</h1>
+        {% load crispy_forms_tags %}
+            <form action="" method="POST" enctype="multipart/form-data" style="width: 50%; margin:auto;">
+            {% csrf_token %}
+            {{form|crispy}}
+
+            <button type="submit"  class="btn btn-primary">Send Concern</button>
+
+            </form>
+
+    </div>
+    {%endblock%}

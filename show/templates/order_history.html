@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container mt-3 text-center">
+    <h1 class="my-3">Your Orders</h1>
+
+    <div class="row row-cols-4">
+        {%for i in imagelist%}
+
+        <div class="card col text-center" style="width: 18rem;">
+            <img src="/media/{{i.product_id.img}}" style="min-height:max-content;" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title desc">Name: {{i.product_id.name}}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Price: {{i.product_id.amount}}</li>
+                <li class="list-group-item">Time: {{i.time}}</li>
+            </ul>
+            <div class="card-body" style="padding:0; padding-top: 5px;padding-bottom: 5px;">
+                <a href="/likes{{i.product_id.id}}" class="card-link"><i class="fas fa-thumbs-up"></i>
+                    {{i.product_id.likes}}</a>
+                <!-- <a href="/delete_product{{i.id}}" class="card-link"><i class="fas fa-trash"></i></a> -->
+                <!-- Cart</a> -->
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+
+</div>
+{% endblock %}
