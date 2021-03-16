@@ -23,8 +23,14 @@
       overflow: hidden;
       white-space: nowrap;
     }
-    
 
+    .visible {
+      visibility: visible;
+    }
+
+    .invisible {
+      display: none;
+    }
   </style>
 
 </head>
@@ -43,25 +49,28 @@
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item {% ifequal request.path '/myproducts/' %} active {% endifequal %}">
-          <a class="nav-link" href="/myproducts">My Products <span class="sr-only">(current)</span></a>
+          <a class="nav-link {% ifequal request.user.roles 'CUSTOMER' %} invisible {% endifequal %}" href="/myproducts">My
+            Products <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item {% ifequal request.path '/contact/' %} active {% endifequal %}">
           <a class="nav-link" href="/contact">Contact Us <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item {% ifequal request.path '/usercart/' %} active {% endifequal %}">
-          <a class="nav-link" href="/usercart">My Cart <span class="sr-only">(current)</span></a>
+        <li class="nav-item {% ifequal request.path '/usercart/' %} active {% endifequal %} ">
+          <a class="nav-link {% ifequal request.user.roles 'SELLER' %} invisible {% endifequal %}" href="/usercart">My Cart <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item {% ifequal request.path '/order_history/' %} active {% endifequal %}">
-          <a class="nav-link" href="/order_history">Order history</a>
+          <a class="nav-link {% ifequal request.user.roles 'SELLER' %} invisible {% endifequal %}" href="/order_history">Order history</a>
         </li>
         <li class="nav-item {% ifequal request.path '/history_sellers/' %} active {% endifequal %}">
-          <a class="nav-link" href="/history_sellers">Seller</a>
+          <a class="nav-link {% ifequal request.user.roles 'CUSTOMER' %} invisible {% endifequal %}" href="/history_sellers">Seller</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <a href="/upload_img" class="btn btn-outline-success mx-2 my-2 my-sm-0">Add New Product</a>
-        <a href="/category" class="btn btn-outline-success mx-2 my-2 my-sm-0">Add New Category</a>
+
+        <a href="/category" class="btn btn-outline-success mx-2 my-2 my-sm-0 {% ifequal request.user.roles 'SELLER' %} invisible {% endifequal %}{% ifequal request.user.roles 'CUSTOMER' %} invisible {% endifequal %}">Add New Category</a>
+
         <a href="/logout_user" class="btn btn-outline-success mx-2 my-2 my-sm-0">Logout</a>
       </form>
     </div>
@@ -72,7 +81,7 @@
   <!-- <a href="upload_img" class="btn btn-primary m-2" style="float: right;">Add new product</a> -->
   <!-- <a href="/logout_user" class="btn btn-primary m-2" style="float:right;">Logout</a> -->
   {% block body%}
-  
+
   {% endblock %}
   <!-- Optional JavaScript; choose one of the two! -->
 
@@ -86,7 +95,7 @@
 
 
   <script>
-   
+
   </script>
 
 
